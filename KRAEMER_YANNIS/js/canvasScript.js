@@ -22,6 +22,7 @@ function drawDollarSign() {
 }
 
 function drawLine(context, startX, startY, endX, endY, width, color) {
+    console.log("draw line")
     context.beginPath()
     context.strokeStyle = color
     context.lineWidth = width
