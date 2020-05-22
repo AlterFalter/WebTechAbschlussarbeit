@@ -10,7 +10,7 @@ Die nächsten Kapitel beinhalten die Themen, welche ich in betracht ziehe.
 
 #### Zinses Zins Rechner
 
-Information: Erklärung was Zins ist und !wie Rechner funktioniert!
+Information: Erklärung was Zins ist und wie Rechner funktioniert!
 (z.B. 30 Tage/Monat, 360Tage/Jahr, 12 Einzahlungen, etc.)
 Formular:
 1. Name --> input type=text
@@ -18,10 +18,12 @@ Formular:
 3. Währung --> Radiobutton/Dropdown
 4. Monatliche Zahlung --> input type=number
 5. Zinssatz
+
 Canvas: Dollar Zeichen
+
 Zusatzfunktion: 
-* für neue Währung voten um diese beim Update hinzuzufügen --> speichern in DB (email (für benachrichtigung), währungsname)
-* abspeichern von Werten
+* für neue Währung voten um diese beim Update hinzuzufügen --> speichern in DB (email (für benachrichtigung), Währungsname)
+* Abspeichern von Werten
 CSS
 * Felder, welche ausgefüllt sein müssen, haben den * anklickbar und Dokumnet springt zur Erklärung
 
@@ -31,15 +33,19 @@ Information: warum wurden diese default-Werte gewählt
 Canvas: Haus wird gezeichnet
 Zusatzfunktion: Hausposition merken
 
+#### Währungsumrechner
+
+Formular: Kapital, Startwährung, Endwährung, Runden ([Ja],[Nein]), (Kurs)
+Zusatzfunktion: Ajax Abfrage für Live Umrechnungskurs
+Canvas: Dollar Zeichen
+
 #### Entscheidung
 
 TODO: Entscheidung hier definieren.
 
 ## Warum diese Datei existiert
 
-Diese README-Datei wurde angefügt um das Projekt auf meinem Github-Account gut erkennen zu können 
-und auch in Zukunft eine Erklärung des Kontextes zu haben.
-Ausserdem ist es Best-Practice bei Git Repositories.
+Diese README-Datei wurde angefügt um das Projekt auf meinem Github-Account gut erkennen zu können und auch in Zukunft eine Erklärung des Kontextes zu haben. Ausserdem ist es Best-Practice bei Git Repositories.
 
 ## Verzeichnisstruktur
 
