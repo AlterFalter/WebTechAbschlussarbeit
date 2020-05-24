@@ -21,11 +21,18 @@ Formular:
 
 Canvas: Dollar Zeichen
 
-Zusatzfunktion: 
+Zusatzfunktion:
 * für neue Währung voten um diese beim Update hinzuzufügen --> speichern in DB (email (für benachrichtigung), Währungsname)
 * Abspeichern von Werten
+* Features können abgestimmt werden
+* Währungsumrechner API --> https://www.freeforexapi.com/Home/Api
+* Währungsumrechner durch Werte in DB
+
 CSS
 * Felder, welche ausgefüllt sein müssen, haben den * anklickbar und Dokumnet springt zur Erklärung
+
+Cookie:
+* letzte Berechung wird dadurch geladen und die Werte in die Felder geschrieben
 
 #### Hypothekenrechner
 
