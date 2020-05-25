@@ -17,132 +17,140 @@
         <h1 class="w3-jumbo">Zinses Zins Rechner</h1>
         <nav id="navigation" class="w3-bar w3-theme">
             <a href="#information" class="w3-bar-item w3-button w3-blue">Information</a>
-            <a href="#formTitle" class="w3-bar-item w3-button w3-blue">Formular</a>
-            <a href="#canvasTitle" class="w3-bar-item w3-button w3-blue">Canvas</a>
-            <a href="#additionalFeatureTitle" class="w3-bar-item w3-button w3-blue">Zusatztechnik</a>
+            <a href="#formTitle" class="w3-bar-item w3-button w3-blue">Rechner</a>
+            <a href="#canvasTitle" class="w3-bar-item w3-button w3-blue">Dollar Zeichen</a>
+            <a href="#additionalFeatureTitle" class="w3-bar-item w3-button w3-blue">Währungsumrechner</a>
         </nav>
     </header>
 
-    <h2 id="information">Information</h2>
-    <p>Für eine erfolgreiche Berechnung müssen Sie das Formular vollständig ausfüllen.</p>
-    <p>
-        Fügen Sie beim Namensfeld Ihren Vornamen und Nachnamen ein.
-        Umlaute, wie ä, ö, é, etc., sind nicht erlaubt.
-    </p>
-    <p>Bei Kapital, jährlicher Zins und Einzahlung dürfen ausschliesslich die Zeichen von 0 bis 9, sowie Punkt für Kommazahlen und ein optionales Minus an erster Stelle für negative Zahlen verwendet werden.</p>
-    <p>Dauer darf ausschliesslich positive ganze Zahlen beinhalten.</p>
-    <p>Die Einzahlungen werden stehts vor der Zinsrechnung ausgeführt.</p>
-    <div class="w3-col s12">
-        <img src="img/CashCHF.jpg" alt="Bild von Schweizer Franken in Bar" class="w3-col s12 l6" srcset="" width="100%">
-    </div>
-
-    <h2 id="formTitle">Rechner (Formular)</h2>
-    <form action="server.php" method="post" class="w3-col s12" onsubmit="return checkValuesBeforeSending();">
-        <input type="hidden" name="methodType" value="interestCalculator">
-
-        <div class="w3-col s12">
-            <label for="name" class="w3-col s12 m4 l2">Voller Name:</label>
-            <div class="w3-col s12 m6 l4">
-                <input type="text" name="name" id="name" class="w3-col s10 w3-input w3-border" placeholder="Max Mustermann" required> 
-            </div>
-        </div>
-
-        <div class="w3-col s12">
-            <label for="principal" class="w3-col s12 m4 l2">Kapital:</label>
-            <div class="w3-col s12 m6 l4">
-                <input type="number" name="principal" id="principal" class="w3-col s10 w3-input w3-border" step="0.01" required>
-                <div class="unit">$</div>
-            </div>
-        </div>
-
-        <div class="w3-col s12">
-            <label for="interestInPercent" class="w3-col s12 m4 l2">Jährlicher Zins:</label>
-            <div class="w3-col s12 m6 l4">
-                <input type="number" name="interestInPercent" id="interestInPercent" class="w3-col s10 w3-input w3-border" step="0.01" value="5" required>
-                <div class="unit">%</div>
-            </div>
-        </div>
-
-        <div class="w3-col s12">
-            <label for="deposit" class="w3-col s12 m4 l2">Einzahlung:</label>
-            <div class="w3-col s12 m6 l4">
-                <input type="number" name="deposit" id="deposit" class="w3-col s10 w3-input w3-border" step="0.01" required>
-                <div class="unit">$</div>
-            </div>
-            <select name="frequency" id="frequency" class="w3-col s10 m2 l2 w3-input w3-border">
-                <option value="noDeposit">keine Einzahlung</option>
-                <option value="monthly" selected>monatlich</option>
-                <option value="yearly">jährlich</option>
-            </select>
-        </div>
-
-        <div class="w3-col s12">
-            <label for="duration" class="w3-col s12 m4 l2">Dauer:</label>
-            <div class="w3-col s12 m6 l4">
-                <input type="number" name="duration" id="duration" class="w3-col s10 w3-input w3-border" required>
-                <div class="unit">Jahre</div>
-            </div>
-        </div>
-
-        <input type="submit" id="interestCalculatorSubmitButton" class="w3-button w3-blue w3-col s12 w3-section" value="Berechnen">
-    </form>
-
-    <h2 id="canvasTitle">Dollar Zeichen (Canvas)</h2>
-    <div class="w3-panel w3-pale-blue w3-leftbar w3-border-blue">
-        <h3>Kennen Sie den Unterschied zwischen dem Dollar Zeichen mit einem Strich und einem mit zwei Striche?</h3>
+    <section>
+        <h2 id="information">Information</h2>
+        <p>Für eine erfolgreiche Berechnung müssen Sie das Formular vollständig ausfüllen.</p>
         <p>
-            Amerikaner und Mexikaner verwenden beide das Dollar Zeichen mit einem Strich für ihre Währung, 
-            da bis ins 19. Jahrhundert beide Währungen gleich viel Wert waren. 
-            Sie verwendeten die gleiche Menge vom gleichen Metall.
-            Das Zeichen mit zwei Strichen beschreibt jedoch exklusiv den US Dollar, wobei die beiden Striche symbolisch ein U für United States bilden. 
-            Dieses Zeichen wird jedoch kaum noch verwendet ausserhalb von Mexiko.
+            Fügen Sie beim Namensfeld Ihren Vornamen und Nachnamen ein.
+            Umlaute, wie ä, ö, é, etc., sind nicht erlaubt.
         </p>
-        <p class="w3-right"><a href="https://www.quora.com/Why-does-the-dollar-sign-symbol-sometimes-have-one-vertical-line-and-other-times-two">Quelle</a></p>
-    </div>
+        <p>Bei Kapital, jährlicher Zins und Einzahlung dürfen ausschliesslich die Zeichen von 0 bis 9, sowie Punkt für Kommazahlen und ein optionales Minus an erster Stelle für negative Zahlen verwendet werden.</p>
+        <p>Dauer darf ausschliesslich positive ganze Zahlen beinhalten.</p>
+        <p>Die Einzahlungen werden stehts vor der Zinsrechnung ausgeführt.</p>
+        <div class="w3-col s12">
+            <img src="img/CashCHF.jpg" alt="Bild von Schweizer Franken in Bar" class="w3-col s12 l6" srcset="" width="100%">
+        </div>
+    </section>
 
-    <div class="w3-display-container" style="height:300px;">
-        <canvas id="dollarSignCanvas" width="300" height="300" class="w3-display-middle"></canvas>
-    </div>
+    <section>
+        <h2 id="formTitle">Rechner (Formular)</h2>
+        <form action="server.php" method="post" class="w3-col s12" onsubmit="return checkValuesBeforeSending();">
+            <input type="hidden" name="methodType" value="interestCalculator">
     
-
-    <h2 id="additionalFeatureTitle">Zusatztechnik</h2>
-    <form action="server.php" method="post" class="w3-col s12">
-        <input type="hidden" name="methodType" value="currencyChanger">
-
-        <div class="w3-col s12">
-            <label for="startPrincipal" class="w3-col s12 m4 l2">Startbetrag:</label>
-            <div class="w3-col s12 m6 l4">
-                <input type="number" name="startPrincipal" id="startPrincipal" class="w3-col s10 w3-input w3-border" value="0">
-                <div class="unit">$</div>
+            <div class="w3-col s12">
+                <label for="name" class="w3-col s12 m4 l2">Voller Name:</label>
+                <div class="w3-col s12 m6 l4">
+                    <input type="text" name="name" id="name" class="w3-col s10 w3-input w3-border" placeholder="Max Mustermann" required>
+                </div>
+                <div id="nameError" class="w3-panel w3-red w3-col s12" hidden>Input falsch! Format: Max Muster</div>
             </div>
-        </div>
-
-        <div class="w3-col s12">
-            <label for="startCurrency" class="w3-col s12 m4 l2">Währung (Start):</label>
-            <div class="w3-col s12 m6 l4">
-                <select name="startCurrency" id="startCurrency" class="w3-col s10 w3-input w3-border" onchange="currencyChanged()">
-                    <option value="usd">US Dollar</option>
-                    <option value="chf">Schweizer Franken</option>
-                    <option value="eur">Euro</option>
+    
+            <div class="w3-col s12">
+                <label for="principal" class="w3-col s12 m4 l2">Kapital:</label>
+                <div class="w3-col s12 m6 l4">
+                    <input type="number" name="principal" id="principal" class="w3-col s10 w3-input w3-border" step="0.01" required>
+                    <div class="unit money">$</div>
+                </div> 
+            </div>
+    
+            <div class="w3-col s12">
+                <label for="interestInPercent" class="w3-col s12 m4 l2">Jährlicher Zins:</label>
+                <div class="w3-col s12 m6 l4">
+                    <input type="number" name="interestInPercent" id="interestInPercent" class="w3-col s10 w3-input w3-border" step="0.01" value="5" required>
+                    <div class="unit">%</div>
+                </div>
+            </div>
+    
+            <div class="w3-col s12">
+                <label for="deposit" class="w3-col s12 m4 l2">Einzahlung:</label>
+                <div class="w3-col s12 m6 l4">
+                    <input type="number" name="deposit" id="deposit" class="w3-col s10 w3-input w3-border" step="0.01" required>
+                    <div class="unit money">$</div>
+                </div>
+                <select name="frequency" id="frequency" class="w3-col s10 m2 l2 w3-input w3-border">
+                    <option value="noDeposit">keine Einzahlung</option>
+                    <option value="monthly" selected>monatlich</option>
+                    <option value="yearly">jährlich</option>
                 </select>
             </div>
-        </div>
-
-        <div class="w3-col s12">
-            <label for="startCurrency" class="w3-col s12 m4 l2">Währung (Ende):</label>
-            <div class="w3-col s12 m6 l4">
-                <select name="endCurrency" id="endCurrency" class="w3-col s10 w3-input w3-border" onchange="currencyChanged()">
-                    <option value="usd">US Dollar</option>
-                    <option value="chf" selected>Schweizer Franken</option>
-                    <option value="eur">Euro</option>
-                </select>
+    
+            <div class="w3-col s12">
+                <label for="duration" class="w3-col s12 m4 l2">Dauer:</label>
+                <div class="w3-col s12 m6 l4">
+                    <input type="number" name="duration" id="duration" class="w3-col s10 w3-input w3-border" required>
+                    <div class="unit">Jahre</div>
+                </div>
             </div>
+    
+            <input type="submit" id="interestCalculatorSubmitButton" class="w3-button w3-blue w3-col s12 w3-section" value="Berechnen">
+        </form>
+    </section>
+
+    <section>
+        <h2 id="canvasTitle">Dollar Zeichen (Canvas)</h2>
+        <div class="w3-panel w3-pale-blue w3-leftbar w3-border-blue">
+            <h3>Kennen Sie den Unterschied zwischen dem Dollar Zeichen mit einem Strich und einem mit zwei Striche?</h3>
+            <p>
+                Amerikaner und Mexikaner verwenden beide das Dollar Zeichen mit einem Strich für ihre Währung, 
+                da bis ins 19. Jahrhundert beide Währungen gleich viel Wert waren. 
+                Sie verwendeten die gleiche Menge vom gleichen Metall.
+                Das Zeichen mit zwei Strichen beschreibt jedoch exklusiv den US Dollar, wobei die beiden Striche symbolisch ein U für United States bilden. 
+                Dieses Zeichen wird jedoch kaum noch verwendet ausserhalb von Mexiko.
+            </p>
+            <p class="w3-right"><a href="https://www.quora.com/Why-does-the-dollar-sign-symbol-sometimes-have-one-vertical-line-and-other-times-two">Quelle</a></p>
         </div>
 
-        <div id="errorField" class="w3-col s12 w3-text-red w3-section" hidden>Währungen können nicht gleich sein.</div>
+        <div class="w3-display-container" style="height:300px;">
+            <canvas id="dollarSignCanvas" width="300" height="300" class="w3-display-middle"></canvas>
+        </div>
+    </section>
+    
+    <section>
+        <h2 id="additionalFeatureTitle">Währungsumrechner (Zusatztechnik)</h2>
+        <form action="server.php" method="post" class="w3-col s12">
+            <input type="hidden" name="methodType" value="currencyChanger">
 
-        <input type="submit" id="additionalFeatureSubmitButton" class="w3-button w3-blue w3-col s12 w3-section" value="Umrechnen">
-    </form>
+            <div class="w3-col s12">
+                <label for="startPrincipal" class="w3-col s12 m4 l2">Startbetrag:</label>
+                <div class="w3-col s12 m6 l4">
+                    <input type="number" name="startPrincipal" id="startPrincipal" class="w3-col s10 w3-input w3-border" value="0" step="0.01">
+                    <div class="unit money">$</div>
+                </div>
+            </div>
+
+            <div class="w3-col s12">
+                <label for="startCurrency" class="w3-col s12 m4 l2">Währung (Start):</label>
+                <div class="w3-col s12 m6 l4">
+                    <select name="startCurrency" id="startCurrency" class="w3-col s10 w3-input w3-border" onchange="currencyChanged()">
+                        <option value="usd">US Dollar</option>
+                        <option value="chf">Schweizer Franken</option>
+                        <option value="eur">Euro</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="w3-col s12">
+                <label for="startCurrency" class="w3-col s12 m4 l2">Währung (Ende):</label>
+                <div class="w3-col s12 m6 l4">
+                    <select name="endCurrency" id="endCurrency" class="w3-col s10 w3-input w3-border" onchange="currencyChanged()">
+                        <option value="usd">US Dollar</option>
+                        <option value="chf" selected>Schweizer Franken</option>
+                        <option value="eur">Euro</option>
+                    </select>
+                </div>
+            </div>
+
+            <div id="errorField" class="w3-col s12 w3-text-red w3-section" hidden>Währungen können nicht gleich sein.</div>
+
+            <input type="submit" id="additionalFeatureSubmitButton" class="w3-button w3-blue w3-col s12 w3-section" value="Umrechnen">
+        </form>
+    </section>
 
     <footer class="w3-section w3-col s12">
         © 2020 Yannis Krämer - HSLU - Web Technologien
