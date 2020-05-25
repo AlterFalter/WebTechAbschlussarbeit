@@ -19,13 +19,10 @@ Formular:
 4. Monatliche Zahlung --> input type=number
 5. Zinssatz
 
-Canvas: Dollar Zeichen
+Canvas:
+* Dollar Zeichen
 
 Zusatzfunktion:
-* für neue Währung voten um diese beim Update hinzuzufügen --> speichern in DB (email (für benachrichtigung), Währungsname)
-* Abspeichern von Werten
-* Features können abgestimmt werden
-* Währungsumrechner API --> https://www.freeforexapi.com/Home/Api
 * Währungsumrechner durch Werte in DB
 
 CSS
@@ -48,7 +45,7 @@ Canvas: Dollar Zeichen
 
 #### Entscheidung
 
-TODO: Entscheidung hier definieren.
+Zinses Zins Rechner
 
 ## Warum diese Datei existiert
 
