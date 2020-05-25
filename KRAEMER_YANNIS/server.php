@@ -13,7 +13,6 @@
         function getParameter($name) {
             if (isset($_POST[$name])) {
                 $value =  $_POST[$name];
-                $_COOKIE[$name] = $value;
                 return $value;
             }
             else {
@@ -22,7 +21,6 @@
         }
 
         function checkName($name) {
-            // TODO: set regex
             $regex = "/^([A-Z]{1}[a-z]{1,}\s{1}[A-Z]{1}[a-z]{1,})/";
             if (!preg_match($regex, $name)) {
                 throw new Exception('Name has to be valid. Pattern: Max Muster');
@@ -72,6 +70,7 @@
                 // check parameter
                 $name = getParameter('name');
                 checkName($name);
+                setcookie('name', $name, time() + (3600 * 8));
                 $principal = getParameter('principal');
                 checkIfNumberIsPositiveOrZero($principal, 'principal');
                 $interestInPercent = getParameter('interestInPercent');
@@ -90,6 +89,10 @@
                 return;
             }
             elseif ($methodType === 'currencyChanger') {
+                ///////////////////////////////////////////////////////////
+                // Diese Umsetzung fand vor der Bekanntgabe der letzten Übung statt.
+                // Martin Bättig wurde darüber am 25.05.2020 per Email informiert.
+                ///////////////////////////////////////////////////////////
                 $startPrincipal = getParameter('startPrincipal');
                 checkIfNumberIsPositiveOrZero($startPrincipal, 'startprincipal');
                 $startCurrency = getParameter('startCurrency');
