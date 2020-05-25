@@ -3,3 +3,8 @@
 body {
     font-family: Arial, Helvetica, sans-serif;
 }
+label, .unit {
+    padding-top: 9px;
+    padding-bottom: 9px;
+    line-height: 22px;
+}

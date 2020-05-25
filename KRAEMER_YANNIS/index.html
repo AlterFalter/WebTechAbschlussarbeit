@@ -50,21 +50,24 @@
         <div class="w3-col s12">
             <label for="principal" class="w3-col s12 m4 l2">Kapital:</label>
             <div class="w3-col s12 m6 l4">
-                <input type="number" name="principal" id="principal" class="w3-col s10 w3-input w3-border" step="0.01" required>$
+                <input type="number" name="principal" id="principal" class="w3-col s10 w3-input w3-border" step="0.01" required>
+                <div class="unit">$</div>
             </div>
         </div>
 
         <div class="w3-col s12">
             <label for="interestInPercent" class="w3-col s12 m4 l2">Jährlicher Zins:</label>
             <div class="w3-col s12 m6 l4">
-                <input type="number" name="interestInPercent" id="interestInPercent" class="w3-col s10 w3-input w3-border" step="0.01" value="5" required>%
+                <input type="number" name="interestInPercent" id="interestInPercent" class="w3-col s10 w3-input w3-border" step="0.01" value="5" required>
+                <div class="unit">%</div>
             </div>
         </div>
 
         <div class="w3-col s12">
             <label for="deposit" class="w3-col s12 m4 l2">Einzahlung:</label>
             <div class="w3-col s12 m6 l4">
-                <input type="number" name="deposit" id="deposit" class="w3-col s10 w3-input w3-border" step="0.01" required>$
+                <input type="number" name="deposit" id="deposit" class="w3-col s10 w3-input w3-border" step="0.01" required>
+                <div class="unit">$</div>
             </div>
             <select name="frequency" id="frequency" class="w3-col s10 m2 l2 w3-input w3-border">
                 <option value="noDeposit">keine Einzahlung</option>
@@ -76,7 +79,8 @@
         <div class="w3-col s12">
             <label for="duration" class="w3-col s12 m4 l2">Dauer:</label>
             <div class="w3-col s12 m6 l4">
-                <input type="number" name="duration" id="duration" class="w3-col s10 w3-input w3-border" required> Jahre
+                <input type="number" name="duration" id="duration" class="w3-col s10 w3-input w3-border" required>
+                <div class="unit">Jahre</div>
             </div>
         </div>
 
@@ -108,7 +112,8 @@
         <div class="w3-col s12">
             <label for="startPrincipal" class="w3-col s12 m4 l2">Startbetrag:</label>
             <div class="w3-col s12 m6 l4">
-                <input type="number" name="startPrincipal" id="startPrincipal" class="w3-col s10 w3-input w3-border" value="0">$
+                <input type="number" name="startPrincipal" id="startPrincipal" class="w3-col s10 w3-input w3-border" value="0">
+                <div class="unit">$</div>
             </div>
         </div>
 
