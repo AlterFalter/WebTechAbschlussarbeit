@@ -1,6 +1,7 @@
 window.onload = function() {
     console.log("page loaded")
-    drawDollarSign()
+    drawDollarSigns()
+    readCookie()
 }
 
 function frequencyChanged() {
@@ -36,12 +37,20 @@ function currencyChanged() {
 function checkValuesBeforeSending() {
     // TODO: show error (label)
     let formHasError = false
+    const errorBorderClass = "w3-border-red"
 
     // name
     if (!isFullNameCorrect()) {
         console.log("name is wrong")
         formHasError = true
+        document.getElementById("name").classList.add(errorBorderClass)
+        document.getElementById("nameError").hidden = false
     }
+    else {
+        document.getElementById("name").classList.remove(errorBorderClass)
+        document.getElementById("nameError").hidden = true
+    }
+
 
     // principal
     let principal = document.getElementById('principal').value
@@ -76,4 +85,12 @@ function checkValuesBeforeSending() {
 
     // submit button
     return !formHasError
+}
+
+function readCookie() {
+    let cookie = document.cookie
+    let name = cookie.split("=")[1]
+    name = name.replace("%20", " ")
+    console.log("full cookie: " + cookie + " | name: " + name)
+    document.getElementById("name").value = name
 }
