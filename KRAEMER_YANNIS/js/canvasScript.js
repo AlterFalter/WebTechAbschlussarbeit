@@ -1,4 +1,4 @@
-function drawDollarSign() {
+function drawDollarSigns() {
     canvasId = "dollarSignCanvas"
     console.log("drawing on " + canvasId)
 
@@ -12,13 +12,18 @@ function drawDollarSign() {
     context.fillStyle = backgroundColor
     context.fillRect(0,0, 300,300)
 
-    // 2 vertical stripes
-    drawLine(context, 125, 25, 125, 275, 10, dollarSignColor)
-    drawLine(context, 150, 25, 150, 275, 10, dollarSignColor)
-    
-    // draw s
-    drawArc(context, 137, 100, 50, 0.5 * Math.PI, 0, dollarSignColor)
-    drawArc(context, 137, 200, 50, -0.5*Math.PI, Math.PI, dollarSignColor)
+    // draw $ with two lines
+    drawLine(context, 75, 25, 75, 275, 10, dollarSignColor)
+    drawLine(context, 100, 25, 100, 275, 10, dollarSignColor)
+    // draw s 
+    drawArc(context, 87, 100, 50, 0.5 * Math.PI, 0, dollarSignColor)
+    drawArc(context, 87, 200, 50, -0.5*Math.PI, Math.PI, dollarSignColor)
+
+    // draw $ with one lines
+    drawLine(context, 220, 25, 220, 275, 10, dollarSignColor)
+    // draw s 
+    drawArc(context, 220, 100, 50, 0.5 * Math.PI, 0, dollarSignColor)
+    drawArc(context, 220, 200, 50, -0.5*Math.PI, Math.PI, dollarSignColor)
 }
 
 function drawLine(context, startX, startY, endX, endY, width, color) {
