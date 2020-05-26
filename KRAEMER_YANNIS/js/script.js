@@ -13,8 +13,6 @@ function registerChangeInDeposit() {
 
 function validateDeposit() {
     // smaller deposit possible when frequency is on monthly
-    console.log("validate deposit")
-
     let depositInput = document.getElementById('deposit')
     let deposit = depositInput.value
     let monthlyDepositMin = depositInput.min
@@ -49,20 +47,16 @@ function frequencyChanged() {
 function validateName() {
     const errorBorderClass = "w3-border-red"
     let fullName = document.getElementById('name').value
-    console.log(fullName)
     // regex for full name
     let regex = /^([A-Z]{1}[a-z]{1,}\s{1}[A-Z]{1}[a-z]{1,})$/
     
     let regexMatches = fullName.match(regex)
-    console.log(regexMatches)
     if (regexMatches) {
-        console.log("name is right");
         document.getElementById("name").classList.remove(errorBorderClass)
         document.getElementById("nameError").hidden = true
         return true
     }
     else {
-        console.log("name is wrong")
         document.getElementById("name").classList.add(errorBorderClass)
         document.getElementById("nameError").hidden = false
         return false

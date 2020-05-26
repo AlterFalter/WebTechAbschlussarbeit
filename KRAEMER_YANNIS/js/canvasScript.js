@@ -27,7 +27,6 @@ function drawDollarSigns() {
 }
 
 function drawLine(context, startX, startY, endX, endY, width, color) {
-    console.log("draw line")
     context.beginPath()
     context.strokeStyle = color
     context.lineWidth = width
@@ -38,7 +37,6 @@ function drawLine(context, startX, startY, endX, endY, width, color) {
 }
 
 function drawArc(context, startX, startY, radius, a, b, color) {
-    console.log("draw arc")
     context.beginPath()
     context.strokeStyle = color
     context.arc(startX, startY, radius, a, b, false)
