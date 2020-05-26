@@ -2,23 +2,72 @@ window.onload = function() {
     console.log("page loaded")
     drawDollarSigns()
     readCookie()
+    registerChangeInDeposit();
+}
+
+function registerChangeInDeposit() {
+    document.getElementById("deposit").onchange = function() {
+        validateDeposit()
+    }
+}
+
+function validateDeposit() {
+    // smaller deposit possible when frequency is on monthly
+    console.log("validate deposit")
+
+    let depositInput = document.getElementById('deposit')
+    let deposit = depositInput.value
+    let monthlyDepositMin = depositInput.min
+    let monthlyDepositMax = depositInput.max
+
+    let frequency = getFrequency()
+    let errorMessage = ""
+
+    if (frequency === "monthly" && (monthlyDepositMin * 10 > deposit || deposit > monthlyDepositMax / 10) && deposit.length > 0) {
+        errorMessage = "Monatliche Einzahlung muss im Bereich sein von " + monthlyDepositMin + " bis " + monthlyDepositMax + "!"
+    }
+    else if (frequency === "yearly" && !depositInput.checkValidity()) {
+        errorMessage = depositInput.validationMessage
+    }
+
+    document.getElementById("depositError").innerText = errorMessage
+    return errorMessage === ""
+}
+
+function getFrequency() {
+    let frequencyInput = document.getElementById("frequency")
+    let frequency = frequencyInput.options[frequencyInput.selectedIndex].value
+    return frequency
 }
 
 function frequencyChanged() {
-    let frequencyInput = document.getElementById("frequency")
-    let frequency = frequencyInput.options[frequencyInput.selectedIndex].value
-    //console.log("frequency changed to " + frequency)
-    
-    let usesDeposits = frequency === "noDeposit"
+    let usesDeposits = getFrequency() === "noDeposit"
     document.getElementById("deposit").disabled = usesDeposits
+    validateDeposit()
 }
 
-function isFullNameCorrect() {
+function validateName() {
+    const errorBorderClass = "w3-border-red"
     let fullName = document.getElementById('name').value
-    let regex = /^([A-Z]{1}[a-z]{1,}\s{1}[A-Z]{1}[a-z]{1,})/
-    return fullName.match(regex)
+    console.log(fullName)
+    // regex for full name
+    let regex = /^([A-Z]{1}[a-z]{1,}\s{1}[A-Z]{1}[a-z]{1,})$/
+    
+    let regexMatches = fullName.match(regex)
+    console.log(regexMatches)
+    if (regexMatches) {
+        console.log("name is right");
+        document.getElementById("name").classList.remove(errorBorderClass)
+        document.getElementById("nameError").hidden = true
+        return true
+    }
+    else {
+        console.log("name is wrong")
+        document.getElementById("name").classList.add(errorBorderClass)
+        document.getElementById("nameError").hidden = false
+        return false
+    }
 }
-
 function isNumberFormatCorrect(numberToCheck) {
     // only allow 0-9, opt. - in the front, opt. . for float comma
     let regex = /[0-9]{1,10}\.{0,1}[0-9]{0,2}$/
@@ -35,56 +84,12 @@ function currencyChanged() {
 }
 
 function checkValuesBeforeSending() {
-    // TODO: show error (label)
-    let formHasError = false
-    const errorBorderClass = "w3-border-red"
+    let nameIsFine = validateName()
 
-    // name
-    if (!isFullNameCorrect()) {
-        console.log("name is wrong")
-        formHasError = true
-        document.getElementById("name").classList.add(errorBorderClass)
-        document.getElementById("nameError").hidden = false
-    }
-    else {
-        document.getElementById("name").classList.remove(errorBorderClass)
-        document.getElementById("nameError").hidden = true
-    }
+    let depositIsFine = validateDeposit()
 
-
-    // principal
-    let principal = document.getElementById('principal').value
-    if (!isNumberFormatCorrect(principal)) {
-        console.log("principal is wrong")
-        formHasError = true
-    }
-
-    // interest
-    let interest = document.getElementById('interestInPercent').value
-    if (!isNumberFormatCorrect(interest)) {
-        console.log("interest is wrong")
-        formHasError = true
-    }
-
-    // deposit
-    let deposit = document.getElementById('deposit').value
-    if (!isNumberFormatCorrect(deposit)) {
-        console.log("deposit is wrong")
-        formHasError = true
-    }
-
-    // frequency - can't be wrong without modifying code
-    frequencyChanged()
-    
-    // duration
-    let duration = document.getElementById('duration').value
-    if (!Number.isInteger(parseInt(duration)) || duration < 1) {
-        console.log("duration is wrong: " + duration + " | type: " + typeof(duration))
-        formHasError = true
-    }
-
-    // submit button
-    return !formHasError
+    // stop or allow submit
+    return nameIsFine && depositIsFine
 }
 
 function readCookie() {

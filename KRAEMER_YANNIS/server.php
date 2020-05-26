@@ -9,6 +9,16 @@
     <a href="index.html">Zurück</a>
 
     <?php
+        // const
+        const PRINCIPAL_MIN = -1000000;
+        const PRINCIPAL_MAX = 1000000;
+        const DEPOSIT_MIN = -1000000;
+        const DEPOSIT_MAX = 1000000;
+        const DURATION_MIN = 1;
+        const DURATION_MAX = 200;
+        const INTEREST_MIN = -10000;
+        const INTEREST_MAX = 10000;
+
         // helper function
         function getParameter($name) {
             if (isset($_POST[$name])) {
@@ -20,28 +30,74 @@
             }
         }
 
-        function checkName($name) {
-            $regex = "/^([A-Z]{1}[a-z]{1,}\s{1}[A-Z]{1}[a-z]{1,})/";
-            if (!preg_match($regex, $name)) {
-                throw new Exception('Name has to be valid. Pattern: Max Muster');
-            }
-        }
+        function validateName() {
+            $regex = "/^([A-Z]{1}[a-z]{1,}\s{1}[A-Z]{1}[a-z]{1,})\$/";
 
-        function checkIfNumberIsPositiveOrZero($value, $name) {
-            if (!is_numeric($value) || 0 > $value) {
-                throw new Exception($name . ' was set to an invalid number');
-            }
-        }
-
-        // is number a full number and doesn't have comma
-        function checkInt($value, $name) {
-            if (is_numeric($value)) {
-                $value = intval($value);
-                if (is_int($value)) {
-                    return;
+            try {
+                $name = getParameter("name");
+                if (!preg_match($regex, $name)) {
+                    echo '<p>Name has to be valid. Pattern: Max Muster</p>';
+                    return false;
                 }
+                else {
+                    echo "<p>Hello " . $name . "</p>";
+                    setcookie('name', $name, time() + (3600 * 8));
+                    return true;
+                }
+            } catch (Exception $ex) {
+                echo '<p>' . $ex->getMessage() . '</p>';
+                return false;
             }
-            throw new Exception($name . " has the wrong format! Value: " . $value);
+        }
+
+        function validatePrincipal($principal) {
+            if (PRINCIPAL_MIN <= $principal && $principal <= PRINCIPAL_MAX) {
+                return true;
+            }
+            else {
+                echo "<p>principal is not valid</p>";
+                return false;
+            }
+        }
+
+        function validateDeposit($deposit) {
+            if (DEPOSIT_MIN <= $deposit && $deposit <= DEPOSIT_MAX) {
+                return true;
+            }
+            else {
+                echo "<p>deposit is not valid</p>";
+                return false;
+            }
+        }
+
+        function validateFrequency($frequency) {
+            if ($frequency == "noDeposit" || $frequency == "monthly" || $frequency == "yearly") {
+                return true;
+            }
+            else {
+                echo "<p>frequency is not valid</p>";
+                return false;
+            }
+        }
+
+        function validateDuration($duration) {
+            if (DURATION_MIN <= $duration && $duration <= DURATION_MAX) {
+                return true;
+            }
+            else {
+                echo "<p>duration is not valid</p>";
+                return false;
+            }
+        }
+
+        function validateInterest($interest) {
+            if (INTEREST_MIN <= $interest && $interest <= INTEREST_MAX) {
+                return true;
+            }
+            else {
+                echo "<p>interest is not valid</p>";
+                return false;
+            }
         }
 
         function formatMoneyNumber($number) {
@@ -67,26 +123,35 @@
             // decide which function it is
             $methodType = getParameter("methodType");
             if ($methodType === 'interestCalculator') {
-                // check parameter
-                $name = getParameter('name');
-                checkName($name);
-                setcookie('name', $name, time() + (3600 * 8));
+                $nameIsValid = validateName();
+
                 $principal = getParameter('principal');
-                checkIfNumberIsPositiveOrZero($principal, 'principal');
-                $interestInPercent = getParameter('interestInPercent');
+                $principalIsValid = validatePrincipal($principal);
+
                 $deposit = getParameter('deposit');
+                $depositIsValid = validateDeposit($deposit);
+
                 $frequency = getParameter('frequency');
+                $frequencyIsValid = validateFrequency($frequency);
+
                 $duration = getParameter('duration');
-                checkIfNumberIsPositiveOrZero($duration, 'duration ');
-                checkInt($duration, 'duration');
-                // calculation
-                $result = calculate($principal, $interestInPercent, $deposit, $frequency, $duration);
-                // format result
-                $result = formatMoneyNumber($result);
-                // output
-                echo '<p>Hallo ' . $name . '</p>';
-                echo "At the end of the " . $duration . " year, you have " . $result . "$";
-                return;
+                $durationIsValid = validateDuration($duration);
+
+                $interestInPercent = getParameter('interestInPercent');
+                $interestIsValid = validateInterest($interestInPercent);
+                
+                if ($nameIsValid && $principalIsValid && $depositIsValid && $frequencyIsValid && $durationIsValid && $interestIsValid) {
+                    // round
+                    $principal = round($principal, 2);
+                    $deposit = round($deposit, 2);
+                    $interestInPercent = round($interestInPercent, 2);
+                    // calculation
+                    $result = calculate($principal, $interestInPercent, $deposit, $frequency, $duration);
+                    // format result
+                    $result = formatMoneyNumber($result);
+                    // output
+                    echo "At the end of the " . $duration . " year, you have " . $result . "$";
+                }
             }
             elseif ($methodType === 'currencyChanger') {
                 ///////////////////////////////////////////////////////////
@@ -94,38 +159,40 @@
                 // Martin Bättig wurde darüber am 25.05.2020 per Email informiert.
                 ///////////////////////////////////////////////////////////
                 $startPrincipal = getParameter('startPrincipal');
-                checkIfNumberIsPositiveOrZero($startPrincipal, 'startprincipal');
+                $principalIsValid = validatePrincipal($startPrincipal);
                 $startCurrency = getParameter('startCurrency');
                 $endCurrency = getParameter('endCurrency');
 
-                $connection = mysqli_connect("localhost", "root", "", "currencyChangerDB");
-                if (!$connection) {
-                    echo "<p>Couldn't connect to DB</p>";
-                    return;
-                }
-                else {
-                    $query = "SELECT Factor FROM currency_pair_price WHERE ? = CurrencyStart AND ? = CurrencyEnd";
-                    $statement = mysqli_prepare($connection, $query);
-                    mysqli_stmt_bind_param($statement, 'ss', $startCurrency, $endCurrency);
-                    mysqli_stmt_execute($statement);
-                    $result = mysqli_stmt_get_result($statement);
-                    if ($result) {
-                        // only once because multiple results not possible (would be an error)
-                        $row = mysqli_fetch_assoc($result);
-                        $factor = $row['Factor'];
-                        $endPrincipal = $startPrincipal * $factor;
-                        // format
-                        $endPrincipal = formatMoneyNumber($endPrincipal);
-                        $startCurrency = strtoupper($startCurrency);
-                        $endCurrency = strtoupper($endCurrency);
-                        // output
-                        echo '<p>Faktor für ' . $startCurrency . ' zu ' . $endCurrency . ' ist: ' . $factor . "</p>";
-                        echo '<p>' . $startPrincipal . ' ' . $startCurrency . ' = ' . $endPrincipal . ' ' . $endCurrency . "</p>";
+                if ($principalIsValid) {
+                    $connection = mysqli_connect("localhost", "root", "", "currencyChangerDB");
+                    if (!$connection) {
+                        echo "<p>Couldn't connect to DB</p>";
                         return;
                     }
                     else {
-                        echo "<p>Currency pair wasn't found in database<p>";
-                        return;
+                        $query = "SELECT Factor FROM currency_pair_price WHERE ? = CurrencyStart AND ? = CurrencyEnd";
+                        $statement = mysqli_prepare($connection, $query);
+                        mysqli_stmt_bind_param($statement, 'ss', $startCurrency, $endCurrency);
+                        mysqli_stmt_execute($statement);
+                        $result = mysqli_stmt_get_result($statement);
+                        if ($result) {
+                            // only once because multiple results not possible (would be an error)
+                            $row = mysqli_fetch_assoc($result);
+                            $factor = $row['Factor'];
+                            $endPrincipal = $startPrincipal * $factor;
+                            // format
+                            $endPrincipal = formatMoneyNumber($endPrincipal);
+                            $startCurrency = strtoupper($startCurrency);
+                            $endCurrency = strtoupper($endCurrency);
+                            // output
+                            echo '<p>Faktor für ' . $startCurrency . ' zu ' . $endCurrency . ' ist: ' . $factor . "</p>";
+                            echo '<p>' . $startPrincipal . ' ' . $startCurrency . ' = ' . $endPrincipal . ' ' . $endCurrency . "</p>";
+                            return;
+                        }
+                        else {
+                            echo "<p>Currency pair wasn't found in database<p>";
+                            return;
+                        }
                     }
                 }
             }
