@@ -40,7 +40,7 @@
                     return false;
                 }
                 else {
-                    echo "<p>Hello " . $name . "</p>";
+                    echo "<p>Hallo " . $name . "</p>";
                     setcookie('name', $name, time() + (3600 * 8));
                     return true;
                 }
@@ -150,7 +150,7 @@
                     // format result
                     $result = formatMoneyNumber($result);
                     // output
-                    echo "At the end of the " . $duration . " year, you have " . $result . "$";
+                    echo "Am Ende des " . $duration . ". Jahres haben Sie " . $result . "$";
                 }
             }
             elseif ($methodType === 'currencyChanger') {
@@ -166,7 +166,7 @@
                 if ($principalIsValid) {
                     $connection = mysqli_connect("localhost", "root", "", "currencyChangerDB");
                     if (!$connection) {
-                        echo "<p>Couldn't connect to DB</p>";
+                        echo "<p>Es kann nicht zur Datenbank verbunden werden</p>";
                         return;
                     }
                     else {
@@ -190,7 +190,7 @@
                             return;
                         }
                         else {
-                            echo "<p>Currency pair wasn't found in database<p>";
+                            echo "<p>Währungspaar wurde nicht gefunden.<p>";
                             return;
                         }
                     }
