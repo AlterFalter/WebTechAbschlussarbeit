@@ -19,7 +19,7 @@ function drawDollarSigns() {
     drawArc(context, 87, 100, 50, 0.5 * Math.PI, 0, dollarSignColor)
     drawArc(context, 87, 200, 50, -0.5*Math.PI, Math.PI, dollarSignColor)
 
-    // draw $ with one lines
+    // draw $ with one line
     drawLine(context, 220, 25, 220, 275, 10, dollarSignColor)
     // draw s 
     drawArc(context, 220, 100, 50, 0.5 * Math.PI, 0, dollarSignColor)
