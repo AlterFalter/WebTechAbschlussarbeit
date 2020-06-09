@@ -3,10 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/w3.css">
+    <link rel="stylesheet" href="css/style.css">
     <title>Zinses Zins Rechner</title>
 </head>
-<body>
-    <a href="index.html">Zurück</a>
+<body class="w3-container">
+    <h1 class="w3-jumbo">Resultat</h1>
+    <a href="index.html" class="w3-button w3-green">Zurück</a>
 
     <?php
         // const
@@ -40,12 +43,12 @@
                     return false;
                 }
                 else {
-                    echo "<p>Hallo " . $name . "</p>";
+                    echo "<p>Hallo <b class=\"money\">" . $name . "</b></p>";
                     setcookie('name', $name, time() + (3600 * 8));
                     return true;
                 }
             } catch (Exception $ex) {
-                echo '<p>' . $ex->getMessage() . '</p>';
+                echo '<p class="w3-text-red">' . $ex->getMessage() . '</p>';
                 return false;
             }
         }
@@ -55,7 +58,7 @@
                 return true;
             }
             else {
-                echo "<p>principal is not valid</p>";
+                echo "<p class=\"w3-text-red\">principal is not valid</p>";
                 return false;
             }
         }
@@ -65,7 +68,7 @@
                 return true;
             }
             else {
-                echo "<p>deposit is not valid</p>";
+                echo "<p class=\"w3-text-red\">deposit is not valid</p>";
                 return false;
             }
         }
@@ -75,7 +78,7 @@
                 return true;
             }
             else {
-                echo "<p>frequency is not valid</p>";
+                echo "<p class=\"w3-text-red\">frequency is not valid</p>";
                 return false;
             }
         }
@@ -85,7 +88,7 @@
                 return true;
             }
             else {
-                echo "<p>duration is not valid</p>";
+                echo "<p class=\"w3-text-red\">duration is not valid</p>";
                 return false;
             }
         }
@@ -95,7 +98,7 @@
                 return true;
             }
             else {
-                echo "<p>interest is not valid</p>";
+                echo "<p class=\"w3-text-red\">interest is not valid</p>";
                 return false;
             }
         }
@@ -114,7 +117,6 @@
                     $principal += $deposit;
                 }
                 $principal *= $factor;
-                //echo '<p>after ' . ($i+1) . ' years --> ' .$principal . '$</p>';
             }
             return $principal;
         }
@@ -150,7 +152,7 @@
                     // format result
                     $result = formatMoneyNumber($result);
                     // output
-                    echo "Am Ende des " . $duration . ". Jahres haben Sie " . $result . "$";
+                    echo "<p>Am Ende des " . $duration . ". Jahres haben Sie <b class=\"money\">" . $result . "$</b>.</p>";
                 }
             }
             elseif ($methodType === 'currencyChanger') {
@@ -166,7 +168,7 @@
                 if ($principalIsValid) {
                     $connection = mysqli_connect("localhost", "root", "", "currencyChangerDB");
                     if (!$connection) {
-                        echo "<p>Es kann nicht zur Datenbank verbunden werden</p>";
+                        echo "<p class=\"w3-text-red\">Es kann nicht zur Datenbank verbunden werden</p>";
                         return;
                     }
                     else {
@@ -185,22 +187,22 @@
                             $startCurrency = strtoupper($startCurrency);
                             $endCurrency = strtoupper($endCurrency);
                             // output
-                            echo '<p>Faktor für ' . $startCurrency . ' zu ' . $endCurrency . ' ist: ' . $factor . "</p>";
-                            echo '<p>' . $startPrincipal . ' ' . $startCurrency . ' = ' . $endPrincipal . ' ' . $endCurrency . "</p>";
+                            echo '<p>Faktor für ' . $startCurrency . ' zu ' . $endCurrency . ' ist: <b class="money">' . $factor . "</b></p>";
+                            echo '<p><b class="money">' . $startPrincipal . ' ' . $startCurrency . '</b> = <b class="money">' . $endPrincipal . ' ' . $endCurrency . "</b></p>";
                             return;
                         }
                         else {
-                            echo "<p>Währungspaar wurde nicht gefunden.<p>";
+                            echo "<p class=\"w3-text-red\">Währungspaar wurde nicht gefunden.<p>";
                             return;
                         }
                     }
                 }
             }
             else {
-                echo "<p>unknown method type</p>";
+                echo "<p class=\"w3-text-red\">unknown method type</p>";
             }
         } catch (Exception $ex) {
-            echo '<p>' . $ex->getMessage() . '</p>';
+            echo '<p class=\"w3-text-red\">' . $ex->getMessage() . '</p>';
             return;
         }
     ?>
