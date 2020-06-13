@@ -88,8 +88,17 @@ function checkValuesBeforeSending() {
 
 function readCookie() {
     let cookie = document.cookie
-    let name = cookie.split("=")[1]
-    name = name.replace("%20", " ")
-    console.log("full cookie: " + cookie + " | name: " + name)
-    document.getElementById("name").value = name
+    if (cookie.includes("name")) {
+        console.log("has cookie")
+        let name = cookie.split("=")[1]
+        name = name.replace("%20", " ")
+    
+        if (name.includes(";")) {
+            console.log("cookie contains semicolon")
+            name = name.split(";")[0]
+        }
+        console.log("full cookie: " + cookie)
+        console.log("name: " + name)
+        document.getElementById("name").value = name
+    }
 }
