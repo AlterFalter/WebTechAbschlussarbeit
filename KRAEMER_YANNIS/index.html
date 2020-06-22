@@ -12,14 +12,15 @@
 
     <title>Zinses Zins Rechner</title>
 </head>
+
 <body class="w3-container">
     <header>
         <h1 class="w3-jumbo">Zinses Zins Rechner</h1>
         <nav id="navigation" class="w3-bar w3-theme">
-            <a href="#information" class="w3-bar-item w3-button w3-green">Information</a>
-            <a href="#formTitle" class="w3-bar-item w3-button w3-green">Rechner</a>
-            <a href="#canvasTitle" class="w3-bar-item w3-button w3-green">Dollar Zeichen</a>
-            <a href="#additionalFeatureTitle" class="w3-bar-item w3-button w3-green">Währungsumrechner</a>
+            <a href="#information" class="w3-bar-item w3-button w3-green w3-mobile">Information</a>
+            <a href="#formTitle" class="w3-bar-item w3-button w3-green w3-mobile">Rechner</a>
+            <a href="#canvasTitle" class="w3-bar-item w3-button w3-green w3-mobile">Dollar Zeichen</a>
+            <a href="#additionalFeatureTitle" class="w3-bar-item w3-button w3-green w3-mobile">Währungsumrechner</a>
         </nav>
     </header>
 
@@ -28,7 +29,7 @@
         <p>Für eine erfolgreiche Berechnung müssen Sie das Formular vollständig ausfüllen.</p>
         <p>
             Fügen Sie beim Namensfeld Ihren Vornamen und Nachnamen ein.
-            Umlaute und Sonderzeichen, wie ä, ö, é, *, -, etc. sind nicht erlaubt.
+            Umlaute, Zahlen und Sonderzeichen, wie ä, ö, é, *, -, etc. sind nicht erlaubt.
         </p>
         <p>Bei Kapital, jährlicher Zins und Einzahlung dürfen ausschliesslich die Zeichen von 0 bis 9, sowie Punkt für Kommazahlen und ein optionales Minus an erster Stelle für negative Zahlen verwendet werden.</p>
         <p>Dauer darf ausschliesslich positive ganze Zahlen beinhalten.</p>
@@ -41,7 +42,7 @@
         </div>
     </section>
 
-    <section>
+    <section id="form">
         <h2 id="formTitle">Rechner (Formular)</h2>
         <form action="server.php" method="post" class="w3-col s12" onsubmit="return checkValuesBeforeSending();">
             <input type="hidden" name="methodType" value="interestCalculator">
@@ -116,7 +117,7 @@
     </section>
     
     <section>
-        <!-- Dieses Feature wurde nicht aus den Übungen übernommen, siehe Kommentar in Datei "server.php" -->
+        <!-- Dieses Feature wurde NICHT aus den Übungen übernommen, siehe Kommentar in Datei "server.php" -->
         <h2 id="additionalFeatureTitle">Währungsumrechner (Zusatztechnik)</h2>
         <form action="server.php" method="post" class="w3-col s12">
             <input type="hidden" name="methodType" value="currencyChanger">
