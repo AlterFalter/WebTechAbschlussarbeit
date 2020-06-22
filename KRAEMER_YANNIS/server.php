@@ -9,7 +9,7 @@
 </head>
 <body class="w3-container">
     <h1 class="w3-jumbo">Resultat</h1>
-    <a href="index.html" class="w3-button w3-green">Zurück</a>
+    <a href="index.html#form" class="w3-button w3-green">Zurück</a>
 
     <?php
         // const
@@ -55,6 +55,7 @@
 
         function validatePrincipal($principal) {
             if (PRINCIPAL_MIN <= $principal && $principal <= PRINCIPAL_MAX) {
+                echo "<p>Startbetrag: <b class=\"money\">" . formatMoneyNumber($principal) . "$</b></p>";
                 return true;
             }
             else {
@@ -130,11 +131,15 @@
                 $principal = getParameter('principal');
                 $principalIsValid = validatePrincipal($principal);
 
-                $deposit = getParameter('deposit');
-                $depositIsValid = validateDeposit($deposit);
-
                 $frequency = getParameter('frequency');
                 $frequencyIsValid = validateFrequency($frequency);
+
+                $deposit = 0;
+                $depositIsValid = false;
+                if ($frequencyIsValid && $frequency != "noDeposit") {
+                    $deposit = getParameter('deposit');
+                    $depositIsValid = validateDeposit($deposit);
+                }
 
                 $duration = getParameter('duration');
                 $durationIsValid = validateDuration($duration);
@@ -142,7 +147,7 @@
                 $interestInPercent = getParameter('interestInPercent');
                 $interestIsValid = validateInterest($interestInPercent);
                 
-                if ($nameIsValid && $principalIsValid && $depositIsValid && $frequencyIsValid && $durationIsValid && $interestIsValid) {
+                if ($nameIsValid && $principalIsValid && $durationIsValid && $interestIsValid && (($depositIsValid && $frequencyIsValid && $frequency != "noDeposit") || ($frequencyIsValid && $frequency == "noDeposit"))) {
                     // round
                     $principal = round($principal, 2);
                     $deposit = round($deposit, 2);
@@ -178,7 +183,7 @@
                         mysqli_stmt_execute($statement);
                         $result = mysqli_stmt_get_result($statement);
                         if ($result) {
-                            // only once because multiple results not possible (would be an error)
+                            // only once because multiple results not possible (would be an error if there would be multiple)
                             $row = mysqli_fetch_assoc($result);
                             $factor = $row['Factor'];
                             $endPrincipal = $startPrincipal * $factor;
@@ -188,7 +193,7 @@
                             $endCurrency = strtoupper($endCurrency);
                             // output
                             echo '<p>Faktor für ' . $startCurrency . ' zu ' . $endCurrency . ' ist: <b class="money">' . $factor . "</b></p>";
-                            echo '<p><b class="money">' . $startPrincipal . ' ' . $startCurrency . '</b> = <b class="money">' . $endPrincipal . ' ' . $endCurrency . "</b></p>";
+                            echo '<p><b class="money">' . formatMoneyNumber($startPrincipal) . ' ' . $startCurrency . '</b> = <b class="money">' . $endPrincipal . ' ' . $endCurrency . "</b></p>";
                             return;
                         }
                         else {
