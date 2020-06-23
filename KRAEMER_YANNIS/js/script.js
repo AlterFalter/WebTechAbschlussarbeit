@@ -89,7 +89,7 @@ function checkValuesBeforeSending() {
 function readCookie() {
     let cookie = document.cookie
     if (cookie.includes("name")) {
-        console.log("has cookie")
+        console.log("has cookie: " + cookie)
         let name = cookie.split("=")[1]
         name = name.replace("%20", " ")
     
@@ -97,7 +97,6 @@ function readCookie() {
             console.log("cookie contains semicolon")
             name = name.split(";")[0]
         }
-        console.log("full cookie: " + cookie)
         console.log("name: " + name)
         document.getElementById("name").value = name
     }
