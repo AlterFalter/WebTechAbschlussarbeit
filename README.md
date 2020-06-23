@@ -73,7 +73,25 @@ Andere Tools wurden nicht getestet!
 
 ### Setup
 
-TODO: add setup
+Um die Webseite vollumfänglich nutzen zu können, muss der PHP-Code interpretiert werden. Hierfür kann z.B. XAMPP benutzt werden.
+
+Starten Sie XAMPP.
+Klicken Sie auf "Config" beim "Apache"-Module.
+Wählen Sie "Apache (httpd.conf)" aus.
+Fügen Sie einen ALIAS Eintrag hinzu:
+    Alias /webtech "D:/WebTechAbschlussarbeit/WEBT_FS20_KRAEMER_YANNIS/"
+Speichern Sie die Datei.
+Starten Sie Apache mit Klick auf "Start".
+Starten Sie MySQL  mit Klick auf "Start".
+Öffnen Sie phpMyAdmin (MySQL) im Browser mit dieser URL:
+    http://localhost/phpmyadmin/sql.php
+Klicken Sie links in der Seitenleiste auf "Neu".
+Klicken Sie oben im Menu auf "SQL".
+Kopieren Sie den vollständigen Inhalt aus schema.sql in den Editor.
+Klicken Sie unten rechts auf "Ok".
+Sie sollten eine Bestätigung bekommen, dass alles ausgeführt werden konnte. Sie haben nun erfolgreich die Datenbank mit Daten angelegt.
+Öffnen Sie nun die Webseite über:
+    http://localhost/webtech/
 
 ## Verwendung von Git
 
@@ -95,3 +113,4 @@ Folgende Technologien wurden für dieses Projekt verwendet:
 ## Abkürzungsverzeichnis
 
 MEP = Modulendprüfung
+z.B. = zum Beispiel
