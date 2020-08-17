@@ -112,5 +112,5 @@ Folgende Technologien wurden für dieses Projekt verwendet:
 
 ## Abkürzungsverzeichnis
 
-MEP = Modulendprüfung
+MEP = Modulendprüfung<br>
 z.B. = zum Beispiel
