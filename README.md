@@ -80,7 +80,7 @@ Klicken Sie auf "Config" beim "Apache"-Module.
 Wählen Sie "Apache (httpd.conf)" aus.
 Fügen Sie einen ALIAS Eintrag hinzu:
     
-    Alias /webtech "D:/WebTechAbschlussarbeit/WEBT_FS20_KRAEMER_YANNIS/"
+    Alias /webtech "C:/WebTechAbschlussarbeit/WEBT_FS20_KRAEMER_YANNIS/"
 
 Speichern Sie die Datei.
 Starten Sie Apache mit Klick auf "Start".
