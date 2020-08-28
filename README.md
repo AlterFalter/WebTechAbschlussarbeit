@@ -47,10 +47,6 @@ Canvas: Dollar Zeichen
 
 Zinses Zins Rechner
 
-## Warum diese Datei existiert
-
-Diese README-Datei wurde angefügt um das Projekt auf meinem Github-Account gut erkennen zu können und auch in Zukunft eine Erklärung des Kontextes zu haben. Ausserdem ist es Best-Practice bei Git Repositories.
-
 ## Verzeichnisstruktur
 
 Die Struktur wurde aus der Aufgabenstellung übernommen.
