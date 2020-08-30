@@ -1,110 +1,81 @@
 # Web Technologien Abschlussarbeit
-
-## Kontext
-Dieses Repository beinhaltet die Abschlussarbeit aus dem Modul Web Technologien aus dem Frühlingssemester 2020 an der HSLU.
+Dieses Repository beinhaltet die Abschlussarbeit aus dem Modul Web Technologien aus dem Frühlingssemester 2020 an der HSLU.<br>
 Diese Arbeit wurde an einer anderen Form von MEP vorgezogen. Für eine genaue Erklärung lesen Sie bitte die Aufgabenstellung (siehe Verzeichnisstruktur).
 
-### Themenwahl
+## Themenwahl
+Ich habe mich für den Zinses Zins Rechner entschieden.<br>
 
-Die nächsten Kapitel beinhalten die Themen, welche ich in betracht ziehe.
-
-#### Zinses Zins Rechner
-
-Information: Erklärung was Zins ist und wie Rechner funktioniert!
+### Information
+Erklärung was Zins ist und wie Rechner funktioniert!
 (z.B. 30 Tage/Monat, 360Tage/Jahr, 12 Einzahlungen, etc.)
-Formular:
+
+### Formular
 1. Name --> input type=text
 2. Kapital --> input type=number (muss weniger als billiarden Bereich sein)
 3. Währung --> Radiobutton/Dropdown
 4. Monatliche Zahlung --> input type=number
 5. Zinssatz
 
-Canvas:
-* Dollar Zeichen
+### Canvas
+Beim Canvas Element habe ich ein Dollar Zeichen gezeichnet.
 
-Zusatzfunktion:
-* Währungsumrechner durch Werte in DB
+### Zusatzfunktion:
+Die Zusatzfunktion besteht aus einem Währungsumrechner.
+Die Umrechnungswerte werden in der DB gespeichert.
 
-CSS
-* Felder, welche ausgefüllt sein müssen, haben den * anklickbar und Dokumnet springt zur Erklärung
-
-Cookie:
-* letzte Berechung wird dadurch geladen und die Werte in die Felder geschrieben
-
-#### Hypothekenrechner
-
-Information: warum wurden diese default-Werte gewählt
-Canvas: Haus wird gezeichnet
-Zusatzfunktion: Hausposition merken
-
-#### Währungsumrechner
-
-Formular: Kapital, Startwährung, Endwährung, Runden ([Ja],[Nein]), (Kurs)
-Zusatzfunktion: Ajax Abfrage für Live Umrechnungskurs
-Canvas: Dollar Zeichen
-
-#### Entscheidung
-
-Zinses Zins Rechner
+### Cookie
+Der Name wird in einem Cookie abgespeichert und beim erneuten aufrufen der Seite gleich erfasst.
 
 ## Verzeichnisstruktur
-
-Die Struktur wurde aus der Aufgabenstellung übernommen.
-Der Hauptordner trägt den Namen des Erstellers.
-Der Ordner "img" beinhaltet die Bilder, welche auf der Webseite verwendet werden.
+Die Struktur wurde aus der Aufgabenstellung übernommen.<br>
+Der Hauptordner trägt den Namen des Erstellers. Dieser wurde zum Bewerten abgegeben.<br>
 Der Ordner "doc" beinhaltet die Aufgabenstellung, sowie allfällige Dokumentation, welche während der Bearbeitung entstehen könnte.
 
 ## Zeitlicher Rahmen
-
-Die Aufgabenstellung wurde am 11.05.2020 veröffentlicht.
-Der Abgabetermin wird/war am 26.06.2020 um 23:59 Uhr sein.
-Damit beläuft sich die verfügbare Zeit auf ca. 7 Wochen.
+Die Aufgabenstellung wurde am 11.05.2020 veröffentlicht.<br>
+Der Abgabetermin war am 26.06.2020 um 23:59 Uhr.<br>
+Damit beläuft sich die verfügbare Zeit auf ca. 7 Wochen.<br>
 Die Aufgabe muss in der Freizeit bearbeitet werden.
 
 ## Verwendung/Ausführung
-
 Das Projekt wurde mit/für Xampp erstellt. 
-Es ist empfohlen, dieses Tool auch damit zu verwenden. 
+Es ist empfohlen, die Seite auch damit zu verwenden.
 Andere Tools wurden nicht getestet!
 
 ### Setup
-
-Um die Webseite vollumfänglich nutzen zu können, muss der PHP-Code interpretiert werden. Hierfür kann z.B. XAMPP benutzt werden.
-
-Starten Sie XAMPP.
-Klicken Sie auf "Config" beim "Apache"-Module.
-Wählen Sie "Apache (httpd.conf)" aus.
+Starten Sie XAMPP.<br>
+Klicken Sie auf "Config" beim "Apache"-Module.<br>
+Wählen Sie "Apache (httpd.conf)" aus.<br>
 Fügen Sie einen ALIAS Eintrag hinzu:
     
     Alias /webtech "C:/WebTechAbschlussarbeit/WEBT_FS20_KRAEMER_YANNIS/"
 
-Speichern Sie die Datei.
-Starten Sie Apache mit Klick auf "Start".
-Starten Sie MySQL  mit Klick auf "Start".
+Speichern Sie die Datei.<br>
+Starten Sie Apache mit einem Klick auf "Start".<br>
+Starten Sie MySQL  mit einem Klick auf "Start".<br>
 Öffnen Sie phpMyAdmin (MySQL) im Browser mit dieser URL:
 
     http://localhost/phpmyadmin/sql.php
 
-Klicken Sie links in der Seitenleiste auf "Neu".
-Klicken Sie oben im Menu auf "SQL".
-Kopieren Sie den vollständigen Inhalt aus schema.sql in den Editor.
-Klicken Sie unten rechts auf "Ok".
-Sie sollten eine Bestätigung bekommen, dass alles ausgeführt werden konnte. Sie haben nun erfolgreich die Datenbank mit Daten angelegt.
+Klicken Sie links in der Seitenleiste auf "Neu".<br>
+Klicken Sie oben im Menu auf "SQL".<br>
+Kopieren Sie den vollständigen Inhalt aus schema.sql in den Editor.<br>
+Klicken Sie unten rechts auf "Ok".<br>
+Sie sollten eine Bestätigung bekommen, dass alles ausgeführt werden konnte. Sie haben nun erfolgreich die Datenbank mit Daten angelegt.<br>
 Öffnen Sie nun die Webseite über:
 
     http://localhost/webtech/
 
 ## Verwendung von Git
-
 Ich habe mich entschieden Git als Versionskontrolle zu verwenden.
 Git wurde anderen Tools gegenüber vorgezogen, da ich bereits viel Erfahrung damit habe und es sehr etabliert ist.
 
 Warum eine Versionskontrolle verwendet werden sollte, können Sie [hier](https://www.atlassian.com/git/tutorials/what-is-version-control) nachlesen.
-In diesem Projekt werden grundsätzlich keine Branches verwendet, da es keine Releases gibt (ausser vielleicht der Abgabetermin, welcher einmalig ist)
-und ich sonst, nach meiner Vermutung, nur zusätzlichen Aufwand und keinen merkbaren Ertrag davon hätte.
+
+In diesem Projekt werden grundsätzlich keine Branches verwendet, da es nur einen einmaligen Release gibt, wobei keine nachträglichen Versionen möglich sind.
+Der zusätzliche Aufwand macht für mich hier keinen Sinn.
 
 ## Technologien, Programmiersprachen und Libraries
-
 Folgende Technologien wurden für dieses Projekt verwendet:
 - JavaScript
 - CSS
@@ -112,8 +83,10 @@ Folgende Technologien wurden für dieses Projekt verwendet:
 - HTML5
 - PHP
 
-## Abkürzungsverzeichnis
+Auf zusätzliche Libraries wurde möglichst verzichtet, da diese nicht erlaubt waren (siehe Aufgabenstellung) und das Projekt nur unnötig kompliziert machen würden.
 
+## Abkürzungsverzeichnis
+DB = Datenbank<br>
 MEP = Modulendprüfung<br>
-z.B. = zum Beispiel
-HTML = Hypertext Markup Language
+HTML = Hypertext Markup Language<br>
+z.B. = zum Beispiel<br>
